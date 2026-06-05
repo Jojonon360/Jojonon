@@ -6,300 +6,8 @@
     <title>JOJONON CYBERNETICS // Core</title>
     <!-- Futuristic Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0f1012;
-            --panel-grey: #1c1d21;
-            --neon-green: #39ff14;
-            --neon-green-glow: rgba(57, 255, 20, 0.4);
-            --text-primary: #e2e8f0;
-            --text-muted: #8a94a6;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
-            font-size: 18px;
-            letter-spacing: 0.5px;
-        }
-
-        /* Canvas Background for Floating Neon Dots */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            z-index: 100;
-            background: rgba(15, 16, 18, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-        }
-
-        .logo span {
-            color: var(--neon-green);
-            text-shadow: 0 0 10px var(--neon-green-glow);
-        }
-
-        .system-time {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            color: var(--neon-green);
-            text-shadow: 0 0 8px var(--neon-green-glow);
-        }
-
-        /* Hero / Under Construction Section */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Liquid Glass Card Styling */
-        .glass-panel {
-            background: rgba(40, 42, 48, 0.35);
-            backdrop-filter: blur(20px) saturate(160%);
-            -webkit-backdrop-filter: blur(20px) saturate(160%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 50px 40px;
-            max-width: 650px;
-            width: 100%;
-            box-shadow: 
-                0 30px 60px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15),
-                inset 0 -1px 20px rgba(57, 255, 20, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Ambient subtle shine line inside glass */
-        .glass-panel::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
-            pointer-events: none;
-            animation: rotateGlass 20s linear infinite;
-        }
-
-        @keyframes rotateGlass {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .construction-status {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .construction-tag {
-            display: inline-block;
-            background: rgba(57, 255, 20, 0.1);
-            border: 1px solid var(--neon-green);
-            color: var(--neon-green);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            padding: 4px 12px;
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
-            margin-bottom: 25px;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 35px;
-        }
-
-        .scroll-indicator {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            color: var(--neon-green);
-            text-decoration: none;
-            text-shadow: 0 0 5px var(--neon-green-glow);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: opacity 0.3s;
-        }
-
-        .scroll-indicator:hover {
-            opacity: 0.8;
-        }
-
-        .scroll-indicator span {
-            animation: bounce 1.5s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(6px); }
-        }
-
-        /* About Section */
-        .about-section {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 120px 40px;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 50px;
-            color: #ffffff;
-            border-left: 4px solid var(--neon-green);
-            padding-left: 15px;
-        }
-
-        /* Grid Cards and Transitions */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .profile-card, .skills-card {
-            background: var(--panel-grey);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 35px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        /* Little green diagnostic corner accents */
-        .profile-card::after, .skills-card::after {
-            content: '';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 6px;
-            height: 6px;
-            background: var(--neon-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--neon-green);
-        }
-
-        .about-text {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .about-text strong {
-            color: var(--text-primary);
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
-        }
-
-        .skill-name {
-            font-weight: 600;
-        }
-
-        .skill-bar {
-            width: 120px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: var(--neon-green);
-            box-shadow: 0 0 8px var(--neon-green-glow);
-        }
-
-        /* Smooth Scroll Animation Classes */
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(80px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal-right.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        footer p {
-            margin-bottom: 8px;
-        }
-    </style>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -308,7 +16,7 @@
 
     <header>
         <div class="logo">JOJONON<span>_</span>CYBERNETICS</div>
-        <div class="system-time" id="clock">SYS_TIME: 00:00:00</div>
+        <div class="system-time" id="clock">SYS_TIME: 00:00:00 UTC</div>
     </header>
 
     <!-- Main Entry Point / Hero -->
@@ -317,6 +25,13 @@
             <span class="construction-tag">SYSTEM STATUS: OFFLINE</span>
             <h2 class="construction-status">Under Construction</h2>
             <p class="subtitle">Meanwhile, read about me below.</p>
+            
+            <!-- Replace with the link to your actual game -->
+            <a href="https://your-game-url-here.com" target="_blank" rel="noopener noreferrer" class="game-btn">
+                LAUNCH GAME PROTOCOL ➔
+            </a>
+            <br>
+
             <a href="#about" class="scroll-indicator">
                 ENGAGE SCANNER <span>↓</span>
             </a>
@@ -328,9 +43,9 @@
         <h3 class="section-title">SYSTEM OPERATIVE</h3>
         
         <div class="about-grid">
-            <!-- Left Side: Profile Card (Slides in from right when scrolled) -->
+            <!-- Left Side: Profile Card -->
             <div class="profile-card reveal-right">
-                <h4 style="font-family: 'Orbitron', sans-serif; margin-bottom: 20px; font-size: 1.3rem;">OPERATIVE DOSSIER</h4>
+                <h4 class="card-header">OPERATIVE DOSSIER</h4>
                 <p class="about-text">
                     Greetings. I am <strong>Jojonon</strong>, a mid-range software developer operating in the technological sphere. 
                 </p>
@@ -342,9 +57,9 @@
                 </p>
             </div>
 
-            <!-- Right Side: Skills Card (Slides in from right when scrolled) -->
+            <!-- Right Side: Skills Card -->
             <div class="skills-card reveal-right">
-                <h4 style="font-family: 'Orbitron', sans-serif; margin-bottom: 20px; font-size: 1.3rem;">TECHNICAL ALIGNMENT</h4>
+                <h4 class="card-header">TECHNICAL ALIGNMENT</h4>
                 <ul class="skill-list">
                     <li class="skill-item">
                         <span class="skill-name">Python / Scripting</span>
@@ -372,118 +87,10 @@
 
     <footer>
         <p>© 2026 Jojonon Cybernetics. All systems reserved.</p>
-        <p style="font-size: 0.8rem; opacity: 0.5;">SECURE ACCESS NODE // PUBLIC_GW_09</p>
+        <p class="secure-node">SECURE ACCESS NODE // PUBLIC_GW_09</p>
     </footer>
 
-    <script>
-        // 1. Digital Clock Display
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toUTCString().slice(17, 25);
-            document.getElementById('clock').innerText = `SYS_TIME: ${timeString} UTC`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // 2. Interactive Scrolling Transition (Intersection Observer)
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const revealElements = document.querySelectorAll('.reveal-right');
-        
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Stop observing once transition has triggered
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        revealElements.forEach(element => {
-            observer.observe(element);
-        });
-
-        // 3. HTML5 Canvas: Floating Neon Green Dots Background
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let particlesArray = [];
-        const numberOfParticles = 45;
-
-        // Resize Canvas dynamically
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        // Particle Constructor
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1; // Mini neon dots
-                this.speedX = (Math.random() * 0.4) - 0.2; // Slow floating movement
-                this.speedY = (Math.random() * 0.4) - 0.2;
-                this.alpha = Math.random() * 0.5 + 0.2; // Opacity level
-                this.opacityDirection = Math.random() > 0.5 ? 0.005 : -0.005; // Slow pulsing/fading
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                // Loop back on edges
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
-
-                // Pulse alpha values
-                this.alpha += this.opacityDirection;
-                if (this.alpha >= 0.85 || this.alpha <= 0.15) {
-                    this.opacityDirection = -this.opacityDirection;
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.alpha;
-                ctx.shadowBlur = 8;
-                ctx.shadowColor = '#39ff14';
-                ctx.fillStyle = '#39ff14';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        // Initialize particles
-        function initParticles() {
-            particlesArray = [];
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
-        }
-        initParticles();
-
-        // Loop animation
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
