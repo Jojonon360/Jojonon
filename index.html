@@ -1,547 +1,360 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JOJONON_CYBERNETICS // Under Construction</title>
-  
-  <!-- Font Integrations -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS Play CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Tailwind Configuration for Cyberpunk Accents -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Space Grotesk"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-            science: ['"Orbitron"', 'sans-serif']
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOJONON_CYBERNETICS // Under Construction</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind Play CDN for styling without complex build tools -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        science: ['"Orbitron"', 'sans-serif']
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-
-  <style>
-    /* Premium Liquid Glass Styling */
-    .liquid-glass {
-      background: rgba(22, 22, 26, 0.45);
-      backdrop-filter: blur(20px) saturate(150%);
-      -webkit-backdrop-filter: blur(20px) saturate(150%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .liquid-glass-glow-green {
-      border: 1px solid rgba(34, 197, 94, 0.35);
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05),
-                  0 8px 32px 0 rgba(0, 0, 0, 0.3),
-                  0 0 15px rgba(34, 197, 94, 0.15);
-    }
-    .liquid-glass-glow-red {
-      border: 1px solid rgba(244, 63, 94, 0.35);
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05),
-                  0 8px 32px 0 rgba(0, 0, 0, 0.3),
-                  0 0 15px rgba(244, 63, 94, 0.15);
-    }
-    /* Sci-fi Scanline Screen effect */
-    .scanlines {
-      background: linear-gradient(
-        rgba(18, 18, 21, 0) 50%, 
-        rgba(0, 0, 0, 0.25) 50%
-      );
-      background-size: 100% 4px;
-    }
-    /* Hide scrollbar helper */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #121215;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #22c55e;
-    }
-  </style>
+    </script>
+    <!-- Custom Cyber Styling -->
+    <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="bg-[#121215] text-gray-100 font-sans selection:bg-emerald-500/30 selection:text-[#22c55e] relative min-h-screen overflow-x-hidden">
+<body class="bg-[#121215] text-gray-100 font-sans select-none overflow-x-hidden min-h-screen relative">
 
-  <!-- Cybernetic Grid and Glow Background Background -->
-  <div class="fixed inset-0 -z-50 overflow-hidden pointer-events-none">
-    <!-- Overlay Grid -->
-    <div class="absolute inset-0 opacity-[0.05]" style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 32px 32px;"></div>
-    <!-- Scanline Filter -->
-    <div class="absolute inset-0 scanlines opacity-5"></div>
-    <!-- Dark Vignette -->
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(10,10,12,0.95)_100%)]"></div>
-
-    <!-- Green Neon Ambient Aura Dot -->
-    <div class="absolute w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.18)_0%,transparent_70%)] blur-[80px] top-[10%] left-[-10%] animate-pulse"></div>
-    <!-- Red Rosish Neon Ambient Aura Dot -->
-    <div class="absolute w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] rounded-full bg-[radial-gradient(circle,rgba(244,63,94,0.15)_0%,transparent_70%)] blur-[80px] bottom-[15%] right-[-10%] animate-pulse" style="animation-delay: 1s;"></div>
-  </div>
-
-  <!-- HEADER NAVIGATION -->
-  <header class="sticky top-0 z-40 w-full bg-[#121215]/50 backdrop-blur-md border-b border-white/5 select-none transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <i data-lucide="cpu" class="w-5.5 h-5.5 text-[#22c55e] animate-pulse"></i>
-        <span class="font-science font-bold text-sm sm:text-base tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-100 to-[#22c55e]">
-          JOJONON_CYBERNETICS
-        </span>
-      </div>
-
-      <!-- Realtime System Clock -->
-      <div class="flex flex-col items-end font-mono text-[10px] sm:text-xs tracking-wider text-gray-400">
-        <div class="flex items-center gap-1.5">
-          <span class="text-[9px] uppercase tracking-widest text-[#22c55e] hidden sm:inline">NET_SECURE</span>
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-          <span id="live-time" class="text-gray-200 font-bold">00:00:00</span>
-        </div>
-        <div class="text-gray-500 text-[9px] mt-0.5">
-          SYS_LOG: <span id="live-date" class="text-gray-400">2026.00.00</span>
-        </div>
-      </div>
+    <!-- Glowing Background Aura and Grid -->
+    <div id="cyber-bg" class="fixed inset-0 -z-50 overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 opacity-[0.06] bg-grid"></div>
+        <div class="absolute inset-0 pointer-events-none opacity-[0.02] bg-scanlines"></div>
+        <div class="absolute inset-0 bg-vignette"></div>
+        <!-- Lights are added dynamically by background.js -->
+        <div id="neon-lights-container" class="absolute inset-0 blur-[100px] opacity-60"></div>
     </div>
-  </header>
 
-  <!-- MAIN SCROLLABLE CONTENT -->
-  <main class="relative z-10">
-
-    <!-- HERO SECTION (SITE UNDER CONSTRUCTION) -->
-    <section class="min-h-[calc(100vh-76px)] flex flex-col justify-center items-center px-4 relative text-center">
-      <div class="max-w-4xl w-full flex flex-col items-center">
-        
-        <!-- Red alert construction badge -->
-        <div class="px-3.5 py-1.5 rounded-full bg-rose-500/[0.04] border border-rose-500/25 flex items-center gap-2 mb-6">
-          <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400 animate-pulse"></i>
-          <span class="font-mono text-[10px] sm:text-xs text-rose-300 font-semibold uppercase tracking-widest leading-none">
-            BUILD_PHASE: ACTIVE
-          </span>
-        </div>
-
-        <!-- Heading with smooth responsive spacing -->
-        <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-rose-500/10 blur-xl rounded-full"></div>
-          <h1 class="font-science font-black text-3xl sm:text-5xl md:text-6xl tracking-tight leading-tight uppercase relative z-10">
-            Site is under <br />
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#22c55e] via-emerald-100 to-rose-400 font-extrabold filter drop-shadow-[0_0_15px_rgba(34,197,94,0.2)]">
-              construction
-            </span>
-          </h1>
-        </div>
-
-        <p class="text-gray-400 text-sm sm:text-base md:text-lg max-w-lg mt-5 font-sans leading-relaxed">
-          Assembly grid active. Packing core portfolio files into static structures.
-        </p>
-
-        <!-- Dynamic Page Scrolling Trigger button -->
-        <button onclick="scrollToProfile()" class="mt-10 px-5 py-3 rounded-full bg-white/[0.02] hover:bg-emerald-500/[0.08] border border-white/5 hover:border-emerald-500/30 transition-all text-xs sm:text-sm font-mono tracking-wider font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-2.5 cursor-pointer">
-          <span>Meanwhile read a bit about me?</span>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-emerald-500"></i>
-        </button>
-      </div>
-
-      <!-- Footer bouncing scroll marker -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-50">
-        <span class="text-[9px] font-mono tracking-widest text-gray-500 uppercase">SCROLL_DOWN</span>
-        <div class="w-1 h-3 bg-[#22c55e] rounded-full animate-bounce"></div>
-      </div>
-    </section>
-
-    <!-- INTERACTIVE MATRIX SECTION -->
-    <section id="profile-matrix" class="py-16 sm:py-24 px-4 sm:px-6 border-t border-white/5 bg-[#121215]/80">
-      <div class="max-w-4xl mx-auto space-y-16">
-        
-        <!-- Header text -->
-        <div class="text-center max-w-2xl mx-auto space-y-2">
-          <span class="font-mono text-xs text-rose-400 uppercase tracking-widest font-semibold">INTERACTIVE_CONTAINER</span>
-          <h2 class="font-science text-2xl sm:text-4xl font-extrabold">Compile Python Scripts</h2>
-          <p class="text-xs sm:text-sm text-gray-400 font-sans">Inspect my automated backend syntax, execute code actions live.</p>
-        </div>
-
-        <!-- HIGH FIDELITY INTERACTIVE PYTHON TERMINAL -->
-        <div class="w-full rounded-xl overflow-hidden liquid-glass shadow-2xl">
-          <!-- Terminal window header -->
-          <div class="flex items-center justify-between px-4 py-3 bg-[#17171a]/80 border-b border-white/5">
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 w-full bg-[#121215]/40 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-              </div>
-              <span class="text-[11px] text-gray-500 font-mono ml-2 flex items-center gap-1">
-                <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#22c55e]"></i>
-                jojonon_cybernetics.py
-              </span>
-            </div>
-            <div class="flex items-center gap-2">
-              <button id="run-btn" onclick="runPythonSimulation()" class="flex items-center gap-1.5 px-3 py-1 rounded text-xs font-mono font-semibold bg-emerald-600/20 text-[#22c55e] hover:bg-emerald-600/30 border border-emerald-500/30 transition-all cursor-pointer">
-                <i data-lucide="play" class="w-3 h-3 fill-current"></i>
-                RUN CODE
-              </button>
-              <button id="reset-btn" onclick="resetPythonSimulation()" class="hidden px-2 py-1 rounded text-xs font-mono text-gray-400 hover:bg-white/5 border border-white/5 transition-all cursor-pointer">
-                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Code editor layout container -->
-          <div class="grid grid-cols-1 md:grid-cols-12 bg-[#121215]/90">
-            <!-- Left Grid: Python Script Code -->
-            <div class="md:col-span-7 p-4 border-b md:border-b-0 md:border-r border-white/5 font-mono text-xs overflow-x-auto text-gray-400 leading-relaxed">
-<pre class="space-y-1">
-<div><span class="text-rose-400">class</span> <span class="text-cyan-400">JoJononCybernetics</span>:</div>
-<div>    <span class="text-rose-400">def</span> <span class="text-cyan-400">__init__</span>(<span class="text-rose-400/80">self</span>):</div>
-<div>        <span class="text-rose-400/80">self</span>.developer = <span class="text-emerald-300">"Jojonon"</span></div>
-<div>        <span class="text-rose-400/80">self</span>.level = <span class="text-emerald-300">"Mid-Range Engineer"</span></div>
-<div>        <span class="text-rose-400/80">self</span>.stack = [<span class="text-emerald-300">"Python"</span>, <span class="text-emerald-300">"App Dev"</span>, <span class="text-emerald-300">"React"</span>]</div>
-<div>        <span class="text-rose-400/80">self</span>.status = <span class="text-emerald-300">"UNDER_CONSTRUCTION"</span></div>
-<div></div>
-<div>    <span class="text-rose-400">def</span> <span class="text-cyan-400">sync_neon_grids</span>(<span class="text-rose-400/80">self</span>):</div>
-<div>        <span class="text-amber-400">print</span>(<span class="text-emerald-300">"[⚡] Emitting Neon Lights..."</span>)</div>
-<div>        <span class="text-rose-400">return</span> <span class="text-emerald-300">"Synchronized"</span></div>
-<div></div>
-<div>    <span class="text-rose-400">def</span> <span class="text-cyan-400">execute_boot</span>(<span class="text-rose-400/80">self</span>):</div>
-<div>        <span class="text-amber-400">print</span>(<span class="text-emerald-300">"[⚙️] Portal Boot Sequence..."</span>)</div>
-<div>        pulse = <span class="text-rose-400/80">self</span>.sync_neon_grids()</div>
-<div>        <span class="text-amber-400">print</span>(<span class="text-emerald-300">"Build Safe: SUCCESS"</span>)</div>
-</pre>
-            </div>
-
-            <!-- Right Grid: Simulated Compile Console Terminal -->
-            <div class="md:col-span-5 p-4 bg-[#0d0d0f]/95 font-mono text-xs flex flex-col min-h-[220px]">
-              <div class="flex items-center gap-1.5 text-gray-500 pb-2 border-b border-white/5 mb-2">
-                <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
-                <span class="text-[10px] tracking-wide uppercase">Console Shell</span>
-              </div>
-              <div id="console-logs" class="flex-1 flex flex-col justify-start gap-1 font-mono text-[11px] text-gray-500 transition-all overflow-y-auto max-h-[220px]">
-                <div class="text-gray-600 italic text-center my-auto px-4">
-                  Click 'RUN CODE' to execute local Python scripts...
+                <div class="relative flex items-center justify-center">
+                    <div class="absolute w-4 h-4 bg-emerald-500 blur-md opacity-50"></div>
+                    <!-- Inline SVG CPU Icon -->
+                    <svg class="w-5 h-5 text-[#22c55e] relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="4" width="16" height="16" rx="2" />
+                        <path d="M9 9h6v6H9z" />
+                        <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3" />
+                    </svg>
                 </div>
-              </div>
+                <span data-autodecrypt data-scramble data-scramble-text="JOJONON_CYBERNETICS" class="font-science font-bold text-sm tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-100 to-[#22c55e] cursor-pointer">
+                    JOJONON_CYBERNETICS
+                </span>
             </div>
-          </div>
+
+            <!-- Interactive Header Extras & Clock -->
+            <div class="flex items-center gap-4 sm:gap-6">
+                <!-- Audio Subsystem Toggle Pill -->
+                <button id="comm-audio-toggle" class="px-2.5 py-1 rounded bg-[#17171a]/80 hover:bg-white/[0.03] border border-white/5 active:scale-95 text-[9px] font-mono font-bold tracking-widest text-gray-400 hover:text-white transition-all cursor-pointer flex items-center gap-1.5 h-7">
+                    <span id="comms-status-indicator" class="w-1.5 h-1.5 rounded-full bg-rose-500/60 block animate-pulse"></span>
+                    COMMS_AUDIO: <span id="comms-status-label" class="font-bold text-rose-400">MUTED</span>
+                </button>
+
+                <!-- Real-time Cybernet Clock block -->
+                <div class="flex flex-col items-end font-mono text-[11px] text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <span class="text-[9px] uppercase tracking-widest text-[#22c55e] hidden md:inline">NET_SECURE</span>
+                        <span id="time-heartbeat" class="w-1.5 h-1.5 rounded-full bg-emerald-500 transition-all duration-300"></span>
+                        <span id="live-time" class="text-gray-200 font-semibold">00:00:00</span>
+                    </div>
+                    <div class="text-gray-500 text-[9px] mt-0.5 select-none">
+                        SYS_LOG: <span id="live-date" class="text-gray-400">2026.00.00</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </header>
 
-        <!-- PROFILE TABS BLOCK -->
-        <div class="space-y-10">
-          <div class="text-center max-w-2xl mx-auto space-y-2">
-            <span class="font-mono text-xs text-emerald-400 uppercase tracking-widest font-semibold">BIO_TELEMETRY</span>
-            <h2 class="font-science text-2xl sm:text-4xl font-extrabold">System Statistics &amp; Mission</h2>
-            <p class="text-xs sm:text-sm text-gray-400 font-sans">Switch categories to explore bio profiles and target specifications.</p>
-          </div>
+    <!-- Page Content Wrapper -->
+    <main class="relative z-10">
 
-          <!-- Dual tab triggers buttons -->
-          <div class="flex justify-center p-1.5 bg-[#17171a]/70 rounded-full border border-white/5 max-w-md mx-auto shadow-md">
-            <button onclick="switchTab('dev')" id="tab-btn-dev" class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 text-emerald-400 bg-emerald-500/[0.08] border border-emerald-500/20 cursor-pointer">
-              <i data-lucide="fingerprint" class="w-4 h-4"></i>
-              <span>DEVELOPER PROFILE</span>
-            </button>
-            <button onclick="switchTab('project')" id="tab-btn-project" class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 text-gray-400 hover:text-white cursor-pointer">
-              <i data-lucide="sliders" class="w-4 h-4"></i>
-              <span>CYBERNETIC MATRIX</span>
-            </button>
-          </div>
-
-          <!-- Tab Content Display Matrix -->
-          <div id="tab-content" class="transition-all duration-300">
-            <!-- Tab: Developer Portfolio (Default) -->
-            <div id="tab-view-dev" class="grid grid-cols-1 md:grid-cols-12 gap-6">
-              <!-- Left Mini Bio -->
-              <div class="md:col-span-5 p-6 rounded-xl liquid-glass liquid-glass-glow-green flex flex-col justify-between">
-                <div class="space-y-4">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-[#22c55e]"></span>
-                    <span class="font-mono text-xs text-emerald-400 font-bold uppercase">ID: JOJONON_DEV</span>
-                  </div>
-                  <h3 class="font-science text-xl text-gray-200 font-bold tracking-tight">Mid-Range Programmer &amp; Developer</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed font-sans">
-                    I am a mid-range programmer and application developer. My core specialty lies in writing clean, structured code and automating tasks — mostly used to Python for general system logic, scripts, and software structure.
-                  </p>
-                  <p class="text-sm text-gray-400 leading-relaxed font-sans">
-                    Currently assembling this glowing neon framework using basic web components to deploy simple, static pages.
-                  </p>
-                </div>
-                <div class="pt-6 border-t border-white/5 mt-6 flex items-center gap-2.5 text-xs font-mono text-gray-500">
-                  <i data-lucide="terminal" class="w-4 h-4 text-emerald-400"></i>
-                  <span>CWD: /home/jojonon/portfolio</span>
-                </div>
-              </div>
-
-              <!-- Right Statistics Indicators -->
-              <div class="md:col-span-7 p-6 rounded-xl liquid-glass flex flex-col justify-between space-y-6">
-                <div class="space-y-4">
-                  <div class="flex justify-between items-center text-xs font-mono text-gray-400 mb-2">
-                    <span>SYSTEM_METRICS</span>
-                    <span>ONLINE ACTIVE</span>
-                  </div>
-
-                  <!-- Python bar -->
-                  <div class="space-y-1">
-                    <div class="flex justify-between text-xs font-mono font-medium">
-                      <span class="text-gray-300">Python Programming</span>
-                      <span class="text-emerald-400">85%</span>
-                    </div>
-                    <div class="h-2 w-full bg-black/40 rounded p-[1px] border border-white/5">
-                      <div class="h-full bg-emerald-500 rounded-sm" style="width: 85%;"></div>
-                    </div>
-                    <span class="text-[9px] font-mono text-gray-600 block pl-1">import sys; sys.stdout.write("Boot")</span>
-                  </div>
-
-                  <!-- App Dev bar -->
-                  <div class="space-y-1">
-                    <div class="flex justify-between text-xs font-mono font-medium">
-                      <span class="text-gray-300">Application Development</span>
-                      <span class="text-emerald-400">78%</span>
-                    </div>
-                    <div class="h-2 w-full bg-black/40 rounded p-[1px] border border-white/5">
-                      <div class="h-full bg-emerald-500 rounded-sm" style="width: 78%;"></div>
-                    </div>
-                    <span class="text-[9px] font-mono text-gray-600 block pl-1">from core.app import Controller</span>
-                  </div>
-
-                  <!-- UI Design bar -->
-                  <div class="space-y-1">
-                    <div class="flex justify-between text-xs font-mono font-medium">
-                      <span class="text-gray-300">Cybernetic UI (Tailwind)</span>
-                      <span class="text-emerald-400">88%</span>
-                    </div>
-                    <div class="h-2 w-full bg-black/40 rounded p-[1px] border border-white/5">
-                      <div class="h-full bg-emerald-500 rounded-sm" style="width: 88%;"></div>
-                    </div>
-                    <span class="text-[9px] font-mono text-gray-600 block pl-1">class="liquid-glass focus:glow-green"</span>
-                  </div>
+        <!-- 1. Hero Construction Terminal -->
+        <section class="min-h-[calc(100vh-76px)] flex flex-col justify-center items-center px-4 relative">
+            <div class="text-center flex flex-col items-center max-w-4xl w-full">
+                <!-- Status Pill -->
+                <div class="px-3 py-1.5 rounded-full bg-rose-500/[0.04] border border-rose-500/25 flex items-center gap-2 mb-6 animate-flicker">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+                    </span>
+                    <span class="font-mono text-[10px] text-rose-300 font-semibold uppercase tracking-widest">
+                        BUILD_STATUS: ACTIVE
+                    </span>
                 </div>
 
-                <div class="text-[10px] font-mono text-gray-600 flex justify-between pt-4 border-t border-white/5">
-                  <span>METRICS SYNCHRONIZED</span>
-                  <span>CAPACITY LOG: MAX</span>
+                <!-- Glowing Heading -->
+                <div class="relative">
+                    <div class="absolute inset-0 -top-6 blur-3xl opacity-20 bg-gradient-to-r from-emerald-500 to-rose-500 rounded-full"></div>
+                    <h1 class="font-science font-black text-3xl sm:text-5xl md:text-6xl tracking-tight leading-tight uppercase max-w-3xl block p-2">
+                        <span data-autodecrypt data-scramble data-scramble-text="SITE IS UNDER" class="cursor-pointer">SITE IS UNDER</span> <br>
+                        <span data-autodecrypt data-scramble data-scramble-text="CONSTRUCTION" class="bg-clip-text text-transparent bg-gradient-to-r from-[#22c55e] via-emerald-100 to-rose-400 font-extrabold cursor-pointer">
+                            CONSTRUCTION
+                        </span>
+                    </h1>
                 </div>
-              </div>
+
+                <!-- Sub-text -->
+                <p class="text-gray-400 text-sm sm:text-base md:text-lg max-w-md mt-5 leading-relaxed tracking-wide">
+                    Our cybernetic gate is assembling dynamic files in high resolution.
+                </p>
+
+                <!-- Scroll Down Button -->
+                <button onclick="scrollToProfile()" class="mt-10 px-5 py-3 rounded-full bg-white/[0.02] hover:bg-emerald-500/[0.08] border border-white/5 hover:border-emerald-500/35 active:scale-95 transition-all text-xs sm:text-sm font-mono tracking-wider font-semibold text-[#22c55e] hover:text-[#22c55e] flex items-center gap-2.5 cursor-pointer">
+                    <span data-scramble data-scramble-text="DECRYPT PROFILE SCANNER">Meanwhile read a bit about me?</span>
+                    <!-- Down arrow svg -->
+                    <svg class="w-4 h-4 text-emerald-500 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </button>
             </div>
 
-            <!-- Tab: Cybernetic Page Matrix (Hidden initially) -->
-            <div id="tab-view-project" class="hidden grid grid-cols-1 md:grid-cols-12 gap-6">
-              <!-- Left Panel -->
-              <div class="md:col-span-4 p-6 rounded-xl liquid-glass liquid-glass-glow-red flex flex-col justify-between">
-                <div class="space-y-4">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-rose-500"></span>
-                    <span class="font-mono text-xs text-rose-400 font-bold uppercase">NODE: SYS_STATUS</span>
-                  </div>
-                  <h3 class="font-science text-xl text-gray-200 font-bold tracking-tight">Project Architecture</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed font-sans">
-                    This single-page template aggregates complex CSS matrices and dark-grey themes directly on the browser client for ultimate speed.
-                  </p>
-                  <p class="text-sm text-gray-400 leading-relaxed font-sans">
-                    Tailored with zero external build requirements to prevent index errors.
-                  </p>
-                </div>
-                <div class="pt-6 border-t border-white/5 mt-6">
-                  <span class="text-[9px] font-mono text-gray-500 block uppercase">Host Environment</span>
-                  <span class="text-xs font-mono text-rose-400 font-bold flex items-center gap-1 mt-1">
-                    github.io/jojonon <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                  </span>
-                </div>
-              </div>
-
-              <!-- Right Panel: List items -->
-              <div class="md:col-span-8 space-y-4">
-                <div class="p-5 rounded-xl liquid-glass border border-white/5 hover:border-rose-500/20 transition-all flex gap-4">
-                  <div class="p-2.5 bg-white/[0.02] border border-white/10 rounded-lg shrink-0">
-                    <i data-lucide="cpu" class="w-5 h-5 text-rose-400"></i>
-                  </div>
-                  <div>
-                    <h4 class="text-sm font-science text-gray-200 font-bold tracking-wide mb-1">GitHub Pages Native Setup</h4>
-                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed font-sans">Architected with relative local pathways, allowing absolute ease when dropping it straight as a root repo file.</p>
-                  </div>
-                </div>
-
-                <div class="p-5 rounded-xl liquid-glass border border-white/5 hover:border-rose-500/20 transition-all flex gap-4">
-                  <div class="p-2.5 bg-white/[0.02] border border-white/10 rounded-lg shrink-0">
-                    <i data-lucide="layers" class="w-5 h-5 text-emerald-400"></i>
-                  </div>
-                  <div>
-                    <h4 class="text-sm font-science text-gray-200 font-bold tracking-wide mb-1">Fluid Mobile Compatibility</h4>
-                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed font-sans">Assembles columns cleanly when loaded on phones. It scales font sizes dynamically and prevents box cutoffs.</p>
-                  </div>
-                </div>
-
-                <div class="p-5 rounded-xl liquid-glass border border-white/5 hover:border-rose-500/20 transition-all flex gap-4">
-                  <div class="p-2.5 bg-white/[0.02] border border-white/10 rounded-lg shrink-0">
-                    <i data-lucide="compass" class="w-5 h-5 text-sky-400"></i>
-                  </div>
-                  <div>
-                    <h4 class="text-sm font-science text-gray-200 font-bold tracking-wide mb-1">Dual Neon Illumination</h4>
-                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed font-sans">Glow points use system hardware acceleration to pulse silently in the background, drawing attention to core targets.</p>
-                  </div>
-                </div>
-              </div>
+            <!-- Float Scroll Tracker Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-60">
+                <span class="text-[9px] font-mono tracking-widest text-gray-500 uppercase">SYS_FLOW</span>
+                <div class="w-[2px] h-6 bg-gradient-to-b from-emerald-500 to-transparent"></div>
             </div>
-          </div>
-        </div>
+        </section>
 
-      </div>
-    </section>
-  </main>
+        <!-- 2. Profile and Sandbox Matrix -->
+        <section id="profile-matrix" class="py-20 px-4 sm:px-6 md:px-8 border-t border-white/5 bg-[#121215]/60 relative">
+            <div class="max-w-6xl mx-auto space-y-24">
+                
+                <!-- Python Code Terminal Sandbox -->
+                <div class="space-y-4">
+                    <div class="text-center max-w-2xl mx-auto">
+                        <span class="font-mono text-xs text-rose-400 uppercase tracking-widest">INTERACTIVE_COMPILER</span>
+                        <h2 class="font-science text-2xl sm:text-3xl font-bold tracking-tight text-gray-100 mt-1">
+                            Run Py-Core Scripts
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1">
+                            Execute the compiled cybernetic initialization logic directly from your browser.
+                        </p>
+                    </div>
 
-  <!-- FOOTER -->
-  <footer class="w-full bg-[#121215]/80 border-t border-white/5 py-8 px-4 select-none">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e] shadow-[0_0_8px_#22c55e]"></span>
-        <span class="font-mono text-xs text-gray-400 tracking-wider">
-          JOJONON_CYBERNETICS // STAT_STABLE
-        </span>
-      </div>
-      <div class="font-mono text-[11px] text-gray-500 text-center md:text-right">
-        <div>&copy; Jojonon 2026. All rights reserved.</div>
-        <div class="text-[9px] text-gray-600 mt-1">Direct single-file static assembly. zero compilation overhead.</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- SCRIPT ACTIONS (TIME UPDATE, PY INTERPRETATION, TABS SWITCHING) -->
-  <script>
-    // 1. Initialize Icon packs automatically on window mount
-    lucide.createIcons();
-
-    // 2. Realtime Time & Date System
-    function updateClock() {
-      const now = new Date();
-      
-      const hh = String(now.getHours()).padStart(2, '0');
-      const mm = String(now.getMinutes()).padStart(2, '0');
-      const ss = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('live-time').innerText = `${hh}:${mm}:${ss}`;
-
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      document.getElementById('live-date').innerText = `${year}.${month}.${day}`;
-    }
-    updateClock();
-    setInterval(updateClock, 1000);
-
-    // 3. Smooth Chevron scroll Down behavior
-    function scrollToProfile() {
-      document.getElementById('profile-matrix').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // 4. Tab togglers Switch actions
-    function switchTab(tab) {
-      const devBtn = document.getElementById('tab-btn-dev');
-      const projectBtn = document.getElementById('tab-btn-project');
-      const devView = document.getElementById('tab-view-dev');
-      const projectView = document.getElementById('tab-view-project');
-
-      if (tab === 'dev') {
-        // Dev active styles
-        devBtn.className = "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 text-emerald-400 bg-emerald-500/[0.08] border border-emerald-500/20 cursor-pointer";
-        projectBtn.className = "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 text-gray-400 hover:text-white cursor-pointer";
+                    <!-- Python Terminal Console -->
+                    <div class="w-full max-w-2xl mx-auto rounded-xl overflow-hidden liquid-glass border border-white/10 shadow-2xl">
+                        <!-- Terminal Bar -->
+                        <div class="flex items-center justify-between px-4 py-2.5 bg-[#17171a]/70 border-b border-white/5">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80 block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 block"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 block"></span>
+                                <span class="text-[10px] text-gray-500 font-mono ml-2">jojonon_cybernetics.py</span>
+                            </div>
+                            <button id="run-btn" onclick="executePython()" class="flex items-center gap-1.5 px-3 py-1 rounded text-xs font-mono font-semibold bg-emerald-600/20 text-[#22c55e] hover:bg-emerald-600/30 active:scale-95 border border-emerald-500/30 transition-all cursor-pointer">
+                                RUN SCRIPT
+                            </button>
+                        </div>
+                        <!-- Split Panel -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 bg-[#121215]/85">
+                            <!-- Python editor -->
+                            <div class="md:col-span-7 p-4 border-b md:border-b-0 md:border-r border-white/5 font-mono text-[11px] sm:text-xs overflow-x-auto leading-relaxed text-gray-400">
+<pre class="text-left font-mono whitespace-pre"><span class="text-rose-400">class</span> <span class="text-cyan-400 font-medium">JoJononCybernetics</span>:
+    <span class="text-rose-400">def</span> <span class="text-cyan-400 font-medium">__init__</span>(<span class="text-rose-400/80">self</span>):
+        <span class="text-rose-400/80">self</span>.developer = <span class="text-emerald-300">"Jojonon"</span>
+        <span class="text-rose-400/80">self</span>.level = <span class="text-emerald-300">"Mid-Range Engineer"</span>
+        <span class="text-rose-400/80">self</span>.stack = [<span class="text-emerald-300">"Python"</span>, <span class="text-emerald-300">"App Dev"</span>]
         
-        devView.classList.remove('hidden');
-        projectView.classList.add('hidden');
-      } else {
-        // Project active styles
-        projectBtn.className = "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 text-rose-400 bg-rose-500/[0.08] border border-rose-500/20 cursor-pointer";
-        devBtn.className = "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 text-gray-400 hover:text-white cursor-pointer";
-        
-        projectView.classList.remove('hidden');
-        devView.classList.add('hidden');
-      }
-    }
+    <span class="text-rose-400">def</span> <span class="text-cyan-400 font-medium">sync_neon_grids</span>(<span class="text-rose-400/80">self</span>):
+        <span class="text-amber-400">print</span>(<span class="text-emerald-300">"[⚡] Emitting Neon Lights..."</span>)
+        <span class="text-rose-400">return</span> <span class="text-emerald-300">"Synchronized"</span>
 
-    // 5. Interactive Simulated Python Interpreter script execution outputs
-    let currentLineIndex = 0;
-    let timerRef = null;
-    let isExecuting = false;
+    <span class="text-rose-400">def</span> <span class="text-cyan-400 font-medium">execute_boot</span>(<span class="text-rose-400/80">self</span>):
+        <span class="text-amber-400">print</span>(<span class="text-emerald-300">"[⚙️] Boot Complete by Jojonon"</span>)
 
-    const logLines = [
-      ">>> python3 -u jojonon_cybernetics.py",
-      "Scanning standard imports... Done.",
-      "Initializing JoJononCybernetics compiler layer...",
-      "[⚙️] Portal Boot Sequence...",
-      "Developer: Jojonon | Skill Stack: Python, App Dev, React",
-      "[⚡] Emitting Neon Lights...",
-      "Setting up glowing ambient dots (Neon Green & Rose)",
-      "Sync Status: Synchronized",
-      "Build Safe: SUCCESS",
-      "✨ Virtual execution successful. Explore the tabs below for bios!",
-      ">>> _"
-    ];
+portal = JoJononCybernetics()
+portal.execute_boot()</pre>
+                            </div>
+                            <!-- Output console -->
+                            <div class="md:col-span-5 p-4 bg-[#0d0d0f]/95 font-mono text-[11px] sm:text-xs min-h-[160px] flex flex-col justify-between">
+                                <div id="terminal-screen" class="space-y-1 overflow-y-auto max-h-[180px] text-gray-500">
+                                    <div class="italic text-[10px]">Console output goes here...</div>
+                                </div>
+                                <div class="text-[9px] text-gray-600 pt-2 border-t border-white/5 flex justify-between select-none">
+                                    <span class="text-emerald-600">Secure Environment</span>
+                                    <span>SHELL: Python3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    function runPythonSimulation() {
-      if (isExecuting) return;
-      isExecuting = true;
-      currentLineIndex = 0;
-      
-      const consoleContainer = document.getElementById('console-logs');
-      consoleContainer.innerHTML = ''; // clear logs
+                <!-- Two tabbed modular systems -->
+                <div class="space-y-4">
+                    <div class="text-center max-w-2xl mx-auto">
+                        <span class="font-mono text-xs text-emerald-400 uppercase tracking-widest">SYS_TELEMETRY</span>
+                        <h2 class="font-science text-2xl sm:text-3xl font-bold tracking-tight text-gray-100 mt-1">
+                            Core Mission Stats
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1">
+                            Flip between developer profile telemetry logs and site capabilities.
+                        </p>
+                    </div>
 
-      document.getElementById('run-btn').classList.add('opacity-50', 'cursor-not-allowed');
-      document.getElementById('run-btn').disabled = true;
-      document.getElementById('reset-btn').classList.add('hidden');
+                    <!-- Cyber Tabs switcher -->
+                    <div class="w-full max-w-4xl mx-auto">
+                        <!-- Buttons -->
+                        <div class="flex justify-center gap-2 p-1.5 bg-[#17171a]/70 rounded-full border border-white/5 max-w-sm mx-auto mb-8">
+                            <button id="tab-dev-btn" onclick="switchTab('dev')" class="flex-1 py-2 px-4 rounded-full text-xs font-mono font-semibold tracking-wider transition-all cursor-pointer bg-emerald-500/[0.08] text-emerald-400 border border-emerald-500/30">
+                                DEV PROFILE
+                            </button>
+                            <button id="tab-proj-btn" onclick="switchTab('proj')" class="flex-1 py-2 px-4 rounded-full text-xs font-mono font-semibold tracking-wider transition-all cursor-pointer text-gray-400 hover:text-white">
+                                SYSTEM SPECS
+                            </button>
+                        </div>
 
-      function outputNextLine() {
-        if (currentLineIndex < logLines.length) {
-          const lineText = logLines[currentLineIndex];
-          let customColor = 'text-gray-300';
-          
-          if (lineText.startsWith('>>>')) {
-            customColor = 'text-sky-400 font-bold';
-          } else if (lineText.includes('[⚙️]')) {
-            customColor = 'text-amber-400 font-semibold';
-          } else if (lineText.includes('[⚡]')) {
-            customColor = 'text-rose-400';
-          } else if (lineText.includes('SUCCESS')) {
-            customColor = 'text-[#22c55e] font-bold';
-          } else if (lineText.includes('✨')) {
-            customColor = 'text-emerald-400 font-semibold animate-pulse';
-          }
+                        <!-- Tab contents (Dev Profile) -->
+                        <div id="tab-dev-content" class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                            <!-- Left glass container -->
+                            <div class="md:col-span-5 p-6 rounded-xl liquid-glass liquid-glass-glow-green flex flex-col justify-between text-left">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400 block animate-pulse"></span>
+                                        <span class="font-mono text-[10px] text-emerald-400 tracking-wider">ID: JOJONON_DEV</span>
+                                    </div>
+                                    <h3 class="font-science text-lg sm:text-xl text-gray-100 font-bold mb-3">Mid-Range Programmer</h3>
+                                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                                        I am a mid-range programmer and app developer accustomed to Python for standard script orchestration, systems logic, and rapid application deployment. Currently designing a static layout tailored perfectly for instant GitHub hosting.
+                                    </p>
+                                </div>
+                                <div class="text-[10px] text-gray-500 border-t border-white/5 mt-6 pt-4 font-mono flex items-center gap-1">
+                                    <!-- Keyboard symbol -->
+                                    <span class="text-emerald-400">>_</span>
+                                    <span>CWD: /home/jojonon/web</span>
+                                </div>
+                            </div>
+                            <!-- Right technical details -->
+                            <div class="md:col-span-7 p-6 rounded-xl liquid-glass border border-white/5 text-left flex flex-col justify-between">
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between font-mono text-xs text-gray-400 mb-2">
+                                        <span>SYSTEM_COMPETENCE</span>
+                                        <span>AUTO SYNC_VAL</span>
+                                    </div>
+                                    <!-- Progress items -->
+                                    <div class="space-y-3">
+                                        <div>
+                                            <div class="flex justify-between font-mono text-xs mb-1">
+                                                <span class="text-gray-300">Python Logic Scripting</span>
+                                                <span class="text-emerald-400">85%</span>
+                                            </div>
+                                            <div class="h-2 w-full bg-black/40 rounded p-[1px] border border-white/5">
+                                                <div class="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-sm" style="width: 85%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between font-mono text-xs mb-1">
+                                                <span class="text-gray-300">App Development (System Integrations)</span>
+                                                <span class="text-emerald-400">78%</span>
+                                            </div>
+                                            <div class="h-2 w-full bg-black/40 rounded p-[1px] border border-white/5">
+                                                <div class="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 rounded-sm" style="width: 78%"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between font-mono text-xs mb-1">
+                                                <span class="text-gray-300">Vanilla Modern UI Styling</span>
+                                                <span class="text-[#22c55e]">88%</span>
+                                            </div>
+                                            <div class="h-2 w-full bg-black/40 rounded p-[1px] border border-white/5">
+                                                <div class="h-full bg-gradient-to-r from-emerald-500 to-emerald-300 rounded-sm" style="width: 88%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-[10px] text-gray-600 pt-4 border-t border-white/5 font-mono text-right mt-6">
+                                    CAPACITY: STANDARD_METRIC_ON
+                                </div>
+                            </div>
+                        </div>
 
-          const lineDiv = document.createElement('div');
-          lineDiv.className = `${customColor} tracking-wide leading-relaxed pl-1`;
-          lineDiv.innerText = lineText;
-          
-          consoleContainer.appendChild(lineDiv);
-          consoleContainer.scrollTop = consoleContainer.scrollHeight;
+                        <!-- Tab contents (System specs) -->
+                        <div id="tab-proj-content" class="grid grid-cols-1 md:grid-cols-12 gap-6 hidden">
+                            <!-- Left glass card -->
+                            <div class="md:col-span-5 p-6 rounded-xl liquid-glass liquid-glass-glow-red flex flex-col justify-between text-left">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-4">
+                                        <span class="w-2 h-2 rounded-full bg-rose-400 block animate-pulse"></span>
+                                        <span class="font-mono text-[10px] text-rose-400 tracking-wider">NODE: CORE_PORTAL</span>
+                                    </div>
+                                    <h3 class="font-science text-lg sm:text-xl text-gray-100 font-bold mb-3">Project Specs</h3>
+                                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                                        Deployable immediately to static servers. Fully decoupled architecture utilizing modern viewport-safe calculations, custom modular micro-modules, and dual-glow layouts with zero overhead.
+                                    </p>
+                                </div>
+                                <div class="text-[10px] text-rose-400/90 font-mono flex items-center gap-1 border-t border-white/5 mt-6 pt-4">
+                                    <span>HOST TARGET:</span>
+                                    <span class="underline">github.pages</span>
+                                </div>
+                            </div>
+                            <!-- Right visual parameters -->
+                            <div class="md:col-span-7 p-6 rounded-xl liquid-glass border border-white/5 text-left flex flex-col justify-between">
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-3 p-4 rounded-lg bg-white/[0.01] border border-white/5 hover:border-emerald-500/20 transition-all duration-300">
+                                        <!-- Inline CPU design -->
+                                        <div class="p-2 bg-emerald-500/10 rounded border border-emerald-500/20 text-[#22c55e]">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" /></svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-xs sm:text-sm font-science font-bold text-gray-200">Zero Dependencies (Static Mode)</h4>
+                                            <p class="text-[11px] text-gray-400 leading-tight">Runs natively in modern browsers with pure web files.</p>
+                                        </div>
+                                    </div>
 
-          currentLineIndex++;
-          timerRef = setTimeout(outputNextLine, Math.random() * 300 + 200);
-        } else {
-          isExecuting = false;
-          document.getElementById('run-btn').classList.remove('opacity-50', 'cursor-not-allowed');
-          document.getElementById('run-btn').disabled = false;
-          document.getElementById('reset-btn').classList.remove('hidden');
-        }
-      }
-      outputNextLine();
-    }
+                                    <div class="flex items-center gap-3 p-4 rounded-lg bg-white/[0.01] border border-white/5 hover:border-rose-500/20 transition-all duration-300">
+                                        <div class="p-2 bg-rose-500/10 rounded border border-rose-500/20 text-rose-400">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M14.36 15.3a5 5 0 100-6.6" /></svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-xs sm:text-sm font-science font-bold text-gray-200">Fluid Aspect-Ratio Locking</h4>
+                                            <p class="text-[11px] text-gray-400 leading-tight">Prevents chopped or overlapping elements, even on tiny phones.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-[10px] text-rose-400 font-mono text-right mt-6">
+                                    GRID NODE SYNCHRONIZATION: CALIBRATED
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    function resetPythonSimulation() {
-      clearTimeout(timerRef);
-      isExecuting = false;
-      currentLineIndex = 0;
-      document.getElementById('console-logs').innerHTML = `
-        <div class="text-gray-600 italic text-center my-auto px-4">
-          Click 'RUN CODE' to execute local Python scripts...
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Copyright -->
+    <footer class="w-full bg-[#121215]/85 border-t border-white/5 py-8 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e] shadow-[0_0_8px_#22c55e]"></span>
+                <span class="font-mono text-[10px] sm:text-xs text-gray-400 tracking-wider uppercase">
+                    JOJONON_CYBERNETICS // STAT_SYS_ONLINE
+                </span>
+            </div>
+            <div class="font-mono text-[11px] text-gray-500 text-center md:text-right">
+                <div>&copy; Jojonon 2026. All Rights Reserved.</div>
+                <div class="text-[9px] text-gray-600 mt-0.5">Built professionally for GitHub Pages native hosting.</div>
+            </div>
         </div>
-      `;
-      document.getElementById('reset-btn').classList.add('hidden');
-    }
-  </script>
+    </footer>
+
+    <!-- Modular Script Imports -->
+    <script src="./js/background.js"></script>
+    <script src="./js/time.js"></script>
+    <script src="./js/effects.js"></script>
+    <script src="./js/terminal.js"></script>
+    <script src="./js/tabs.js"></script>
 </body>
 </html>
