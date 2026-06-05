@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS // Quantum Portal</title>
-    <!-- Importing a futuristic font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <title>JOJONON CYBERNETICS // Core</title>
+    <!-- Futuristic Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #05050d;
-            --neon-cyan: #00f0ff;
-            --neon-magenta: #ff0055;
-            --text-color: #e0e6ed;
-            --card-bg: rgba(10, 10, 25, 0.8);
-            --border-glow: 0 0 10px rgba(0, 240, 255, 0.3);
+            --bg-dark: #0f1012;
+            --panel-grey: #1c1d21;
+            --neon-green: #39ff14;
+            --neon-green-glow: rgba(57, 255, 20, 0.4);
+            --text-primary: #e2e8f0;
+            --text-muted: #8a94a6;
         }
 
         * {
@@ -22,306 +22,468 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Share Tech Mono', monospace;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(20, 20, 45, 0.6) 0%, transparent 80%),
-                linear-gradient(rgba(18, 18, 30, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(18, 18, 30, 0.1) 1px, transparent 1px);
-            background-size: 100% 100%, 30px 30px, 30px 30px;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Canvas Background for Floating Neon Dots */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
         }
 
         header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 40px;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            background: rgba(5, 5, 15, 0.9);
-            backdrop-filter: blur(5px);
+            z-index: 100;
+            background: rgba(15, 16, 18, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        h1 {
+        .logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 4px;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+
+        .logo span {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green-glow);
         }
 
         .system-time {
-            color: var(--neon-magenta);
-            text-shadow: 0 0 8px rgba(255, 0, 85, 0.4);
-            font-size: 1.1rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 8px var(--neon-green-glow);
         }
 
-        main {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+        /* Hero / Under Construction Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
         }
 
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .panel {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: var(--border-glow);
+        /* Liquid Glass Card Styling */
+        .glass-panel {
+            background: rgba(40, 42, 48, 0.35);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 650px;
+            width: 100%;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                inset 0 -1px 20px rgba(57, 255, 20, 0.05);
             position: relative;
             overflow: hidden;
         }
 
-        .panel::before {
+        /* Ambient subtle shine line inside glass */
+        .glass-panel::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+            pointer-events: none;
+            animation: rotateGlass 20s linear infinite;
         }
 
-        .panel-title {
+        @keyframes rotateGlass {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .construction-status {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px dashed rgba(224, 230, 237, 0.2);
-            padding-bottom: 10px;
-            color: var(--neon-cyan);
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #00ff66;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 8px #00ff66;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
-        }
-
-        /* Metric Grid */
-        .metric-row {
-            display: flex;
-            justify-content: space-between;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 5px;
+            text-transform: uppercase;
             margin-bottom: 15px;
-            font-size: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        .metric-value {
-            color: var(--neon-cyan);
+        .construction-tag {
+            display: inline-block;
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+            margin-bottom: 25px;
         }
 
-        /* Interactive Terminal */
-        .terminal {
-            background-color: #020205;
-            border: 1px solid rgba(255, 0, 85, 0.2);
-            border-radius: 4px;
-            height: 250px;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.1);
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
         }
 
-        .terminal-output {
-            flex-grow: 1;
+        .scroll-indicator {
+            font-family: 'Orbitron', sans-serif;
             font-size: 0.9rem;
-            line-height: 1.4;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .system-msg {
-            color: #888;
-        }
-
-        .response-msg {
-            color: var(--neon-cyan);
-        }
-
-        .input-line {
-            display: flex;
+            color: var(--neon-green);
+            text-decoration: none;
+            text-shadow: 0 0 5px var(--neon-green-glow);
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-            border-top: 1px solid rgba(255, 0, 85, 0.1);
-            padding-top: 10px;
+            transition: opacity 0.3s;
         }
 
-        .input-line span {
-            color: var(--neon-magenta);
+        .scroll-indicator:hover {
+            opacity: 0.8;
         }
 
-        .terminal-input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: var(--text-color);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1rem;
-            width: 100%;
+        .scroll-indicator span {
+            animation: bounce 1.5s infinite;
         }
 
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        /* About Section */
+        .about-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 120px 40px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: #ffffff;
+            border-left: 4px solid var(--neon-green);
+            padding-left: 15px;
+        }
+
+        /* Grid Cards and Transitions */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .profile-card, .skills-card {
+            background: var(--panel-grey);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        /* Little green diagnostic corner accents */
+        .profile-card::after, .skills-card::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 6px;
+            height: 6px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-name {
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            width: 120px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--neon-green);
+            box-shadow: 0 0 8px var(--neon-green-glow);
+        }
+
+        /* Smooth Scroll Animation Classes */
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 40px;
-            font-size: 0.8rem;
-            color: #555;
-            border-top: 1px solid rgba(18, 18, 30, 0.3);
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
 
+    <!-- Canvas for floating neon green dots background -->
+    <canvas id="bg-canvas"></canvas>
+
     <header>
-        <h1>NEXUS // CORE_01</h1>
-        <div class="system-time" id="clock">SYS_TIME: 00:00:00 UTC</div>
+        <div class="logo">JOJONON<span>_</span>CYBERNETICS</div>
+        <div class="system-time" id="clock">SYS_TIME: 00:00:00</div>
     </header>
 
-    <main>
-        <!-- Panel 1: Diagnostics -->
-        <div class="panel">
-            <div class="panel-title">
-                <span>SYSTEM DIAGNOSTICS</span>
-                <span class="status-dot"></span>
-            </div>
-            <div class="metric-row">
-                <span>Core Temperature:</span>
-                <span class="metric-value" id="temp-val">34.2 °C</span>
-            </div>
-            <div class="metric-row">
-                <span>Quantum Efficiency:</span>
-                <span class="metric-value" id="eff-val">98.4%</span>
-            </div>
-            <div class="metric-row">
-                <span>Active Global Nodes:</span>
-                <span class="metric-value">1,409 / 1,409</span>
-            </div>
-            <div class="metric-row">
-                <span>Firewall Integrity:</span>
-                <span class="metric-value" style="color: #00ff66;">SECURE</span>
-            </div>
-            <div class="metric-row">
-                <span>Memory Allocation:</span>
-                <span class="metric-value">4.12 YB / 10 YB</span>
-            </div>
+    <!-- Main Entry Point / Hero -->
+    <section class="hero-section">
+        <div class="glass-panel">
+            <span class="construction-tag">SYSTEM STATUS: OFFLINE</span>
+            <h2 class="construction-status">Under Construction</h2>
+            <p class="subtitle">Meanwhile, read about me below.</p>
+            <a href="#about" class="scroll-indicator">
+                ENGAGE SCANNER <span>↓</span>
+            </a>
         </div>
+    </section>
 
-        <!-- Panel 2: Interactive Terminal -->
-        <div class="panel">
-            <div class="panel-title">
-                <span>INTERACTIVE INTERFACE</span>
+    <!-- Content Section -->
+    <section class="about-section" id="about">
+        <h3 class="section-title">SYSTEM OPERATIVE</h3>
+        
+        <div class="about-grid">
+            <!-- Left Side: Profile Card (Slides in from right when scrolled) -->
+            <div class="profile-card reveal-right">
+                <h4 style="font-family: 'Orbitron', sans-serif; margin-bottom: 20px; font-size: 1.3rem;">OPERATIVE DOSSIER</h4>
+                <p class="about-text">
+                    Greetings. I am <strong>Jojonon</strong>, a mid-range software developer operating in the technological sphere. 
+                </p>
+                <p class="about-text">
+                    I specialize in building tools, scripts, and software designed to streamline processes, automate logic, and construct clean desktop or web interfaces.
+                </p>
+                <p class="about-text">
+                    Through my focus on code structure and function, I build apps that prioritize performance and utility, keeping my architectures robust and responsive.
+                </p>
             </div>
-            <p style="font-size: 0.85rem; color: #888; margin-bottom: 12px;">
-                Type commands: <span style="color: var(--neon-cyan);">help</span>, <span style="color: var(--neon-cyan);">status</span>, <span style="color: var(--neon-cyan);">ping</span>, or <span style="color: var(--neon-cyan);">clear</span>.
-            </p>
-            <div class="terminal">
-                <div class="terminal-output" id="output">
-                    <div class="system-msg">Session initialized. Quantum uplink established.</div>
-                </div>
-                <div class="input-line">
-                    <span>&gt;</span>
-                    <input type="text" id="command-input" class="terminal-input" autofocus autocomplete="off">
-                </div>
+
+            <!-- Right Side: Skills Card (Slides in from right when scrolled) -->
+            <div class="skills-card reveal-right">
+                <h4 style="font-family: 'Orbitron', sans-serif; margin-bottom: 20px; font-size: 1.3rem;">TECHNICAL ALIGNMENT</h4>
+                <ul class="skill-list">
+                    <li class="skill-item">
+                        <span class="skill-name">Python / Scripting</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+                    </li>
+                    <li class="skill-item">
+                        <span class="skill-name">App Architecture</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div>
+                    </li>
+                    <li class="skill-item">
+                        <span class="skill-name">Automation Engines</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
+                    </li>
+                    <li class="skill-item">
+                        <span class="skill-name">Front-End Interfaces</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 65%;"></div></div>
+                    </li>
+                </ul>
+                <p class="about-text" style="margin-top: 25px; font-size: 0.95rem;">
+                    Currently working on developing unified desktop utilities, testing modern design interfaces, and exploring localized database configurations.
+                </p>
             </div>
         </div>
-    </main>
+    </section>
 
     <footer>
-        <p>PROJECT NEXUS • ACCESSIBLE GLOBALLY • BUILT WITH HTML, CSS & JS</p>
+        <p>© 2026 Jojonon Cybernetics. All systems reserved.</p>
+        <p style="font-size: 0.8rem; opacity: 0.5;">SECURE ACCESS NODE // PUBLIC_GW_09</p>
     </footer>
 
     <script>
         // 1. Digital Clock Display
         function updateClock() {
             const now = new Date();
-            const timeString = now.toISOString().slice(11, 19);
+            const timeString = now.toUTCString().slice(17, 25);
             document.getElementById('clock').innerText = `SYS_TIME: ${timeString} UTC`;
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // 2. Mock Real-time Data Updates
-        function updateMetrics() {
-            // Core Temp fluctuation
-            const baseTemp = 34.0;
-            const variance = (Math.random() * 2) - 1; 
-            document.getElementById('temp-val').innerText = `${(baseTemp + variance).toFixed(1)} °C`;
+        // 2. Interactive Scrolling Transition (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
 
-            // Efficiency fluctuation
-            const baseEff = 98.5;
-            const effVariance = (Math.random() * 1.5) - 0.75;
-            document.getElementById('eff-val').innerText = `${Math.min(100, (baseEff + effVariance)).toFixed(1)}%`;
-        }
-        setInterval(updateMetrics, 3000);
-
-        // 3. Interactive Terminal Logic
-        const input = document.getElementById('command-input');
-        const output = document.getElementById('output');
-
-        input.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                const cmd = input.value.trim().toLowerCase();
-                input.value = '';
-
-                // Echo the command typed
-                const userLine = document.createElement('div');
-                userLine.innerHTML = `<span style="color: var(--neon-magenta);">&gt; ${cmd}</span>`;
-                output.appendChild(userLine);
-
-                // Determine Response
-                const responseLine = document.createElement('div');
-                responseLine.className = 'response-msg';
-
-                if (cmd === 'help') {
-                    responseLine.innerHTML = 'Available protocols: <br>- <strong>status</strong>: Checks network vitals<br>- <strong>ping</strong>: Tests connection latency<br>- <strong>clear</strong>: Resets interface logs';
-                } else if (cmd === 'status') {
-                    responseLine.innerHTML = 'All planetary relay stations reporting 100% functionality. Sync complete.';
-                } else if (cmd === 'ping') {
-                    const latency = Math.floor(Math.random() * 40) + 12;
-                    responseLine.innerHTML = `Latency test: Echo received in ${latency}ms from localized satellite.`;
-                } else if (cmd === 'clear') {
-                    output.innerHTML = '<div class="system-msg">Interface logs cleared.</div>';
-                    return;
-                } else if (cmd === '') {
-                    // Do nothing if empty press
-                    return;
-                } else {
-                    responseLine.innerHTML = `Error: Protocol "${cmd}" not recognized. Type "help" for instructions.`;
-                    responseLine.style.color = 'var(--neon-magenta)';
+        const revealElements = document.querySelectorAll('.reveal-right');
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop observing once transition has triggered
+                    observer.unobserve(entry.target);
                 }
+            });
+        }, observerOptions);
 
-                output.appendChild(responseLine);
-                
-                // Auto-scroll terminal to bottom
-                const terminal = document.querySelector('.terminal');
-                terminal.scrollTop = terminal.scrollHeight;
-            }
+        revealElements.forEach(element => {
+            observer.observe(element);
         });
+
+        // 3. HTML5 Canvas: Floating Neon Green Dots Background
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray = [];
+        const numberOfParticles = 45;
+
+        // Resize Canvas dynamically
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Particle Constructor
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1; // Mini neon dots
+                this.speedX = (Math.random() * 0.4) - 0.2; // Slow floating movement
+                this.speedY = (Math.random() * 0.4) - 0.2;
+                this.alpha = Math.random() * 0.5 + 0.2; // Opacity level
+                this.opacityDirection = Math.random() > 0.5 ? 0.005 : -0.005; // Slow pulsing/fading
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Loop back on edges
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+
+                // Pulse alpha values
+                this.alpha += this.opacityDirection;
+                if (this.alpha >= 0.85 || this.alpha <= 0.15) {
+                    this.opacityDirection = -this.opacityDirection;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#39ff14';
+                ctx.fillStyle = '#39ff14';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Initialize particles
+        function initParticles() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        initParticles();
+
+        // Loop animation
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
     </script>
 </body>
 </html>
