@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <title>JOJONON_CYBERNETICS</title>
+    
+    <!-- Tailwind v4 browser script for client-side evaluation -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Modern Fonts & Styles -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+      :root {
+        --font-space: 'Space Grotesk', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+        --font-sans: 'Inter', sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: #0F0F11;
+        color: #e2e8f0;
+        overflow-x: hidden;
+        font-family: var(--font-sans);
+      }
+
+      /* Custom Cyber Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0F0F11;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1f2937;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #00FF41;
+      }
+
+      /* Frosted Glass Cards and Shells */
+      .frosted-glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      /* Glowing text classes */
+      .neon-glow-green {
+        text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.2);
+      }
+
+      .neon-glow-rose {
+        text-shadow: 0 0 10px rgba(255, 46, 99, 0.5), 0 0 20px rgba(255, 46, 99, 0.2);
+      }
+
+      /* Subtle animated breathing gradient */
+      @keyframes breathing-pulse {
+        0% { opacity: 0.8; }
+        50% { opacity: 0.5; }
+        100% { opacity: 0.8; }
+      }
+
+      .gradient-animate {
+        background-size: 150% 150%;
+        animation: breathing-pulse 4s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen relative bg-[#0F0F11] text-gray-100 overflow-x-hidden select-none selection:bg-[#00FF41]/30 selection:text-white pb-6">
+    
+    <!-- High-Performance Animated Particles Canvas -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+      <canvas id="glow-particles-canvas" class="block w-full h-full"></canvas>
+    </div>
+
+    <!-- Multi-Color Intense Neon Background Ambient Dots, Guaranteed Round via raw inline styles -->
+    <div class="absolute top-24 left-10 z-10 pointer-events-none" style="width: 10px; height: 10px; border-radius: 50%; background-color: #00FF41; box-shadow: 0 0 15px #00FF41;"></div>
+    <div class="absolute top-48 right-12 sm:right-20 z-10 pointer-events-none" style="width: 12px; height: 12px; border-radius: 50%; background-color: #FF2E63; box-shadow: 0 0 20px #FF2E63;"></div>
+    <div class="absolute bottom-48 left-1/4 z-10 pointer-events-none" style="width: 10px; height: 10px; border-radius: 50%; background-color: #FF2E63; box-shadow: 0 0 15px #FF2E63;"></div>
+    <div class="absolute top-1/2 right-1/3 z-10 pointer-events-none" style="width: 10px; height: 10px; border-radius: 50%; background-color: #00FF41; box-shadow: 0 0 15px #00FF41;"></div>
+
+    <!-- Header bar: Title & Time/Date in corner -->
+    <header class="fixed top-0 inset-x-0 h-16 z-50 bg-[#0F0F11]/80 backdrop-blur-md border-b border-white/10 px-4 sm:px-8 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-1.5 h-6 bg-[#00FF41]"></div>
+        <span class="text-base sm:text-lg font-black tracking-tighter uppercase italic text-white font-space">
+          JOJONON_CYBERNETICS
+        </span>
+      </div>
+
+      <!-- Real-Time Date & UTC Time -->
+      <div class="text-right font-mono text-[10px] sm:text-xs leading-tight">
+        <div id="current-date" class="text-white opacity-70 uppercase tracking-wider">
+          OCTOBER 24, 2026
+        </div>
+        <div id="current-time" class="text-[#FF2E63] font-bold tracking-widest mt-0.5">
+          23:42:08 UTC
+        </div>
+      </div>
+    </header>
+
+    <!-- First Slide: Under Construction Hero viewport -->
+    <section class="min-h-screen w-full flex flex-col items-center justify-center pt-16 px-4 relative z-10 text-center">
+      <div class="max-w-3xl mx-auto space-y-6">
+        
+        <!-- Header status chip -->
+        <div class="flex justify-center gap-3">
+          <span class="px-3 py-1 bg-[#00FF41]/10 border border-[#00FF41]/30 rounded-full font-mono text-[9px] sm:text-[10px] text-[#00FF41] uppercase tracking-wider flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-pulse"></span>
+            ACTIVE CONSTRUCT
+          </span>
+        </div>
+
+        <!-- Site Under Construction Hero Title (with fixed spacing/no-chopping margin) -->
+        <div class="space-y-4">
+          <h1 class="text-3xl sm:text-6xl md:text-7xl font-black tracking-wide leading-none uppercase text-white pb-2">
+            SITE IS UNDER <br class="hidden sm:inline" />
+            <span class="inline-block px-1 text-transparent bg-clip-text bg-gradient-to-r from-[#00FF41] to-[#FF2E63] bg-[size:150%] animate-pulse font-black italic">
+              CONSTRUCTION
+            </span>
+          </h1>
+        </div>
+
+        <!-- Corrected description placeholder -->
+        <p class="text-sm sm:text-base md:text-lg text-gray-300 max-w-lg mx-auto font-sans font-light italic tracking-wide leading-relaxed pt-2">
+          meanwhile read a bit about the dev
+        </p>
+
+        <!-- Downward navigation scroll trigger -->
+        <div class="pt-6">
+          <button id="scroll-action-button" class="group bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#00FF41]/40 px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 cursor-pointer inline-flex items-center gap-2" style="min-height: 44px;">
+            <span>Explore Dossier</span>
+            <svg class="w-4 h-4 text-[#00FF41] group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Static scroll visual anchor -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-500 opacity-60">
+        <span class="text-[9px] font-mono tracking-[0.3em] uppercase">SCROLL</span>
+        <div class="w-[1px] h-10 bg-gradient-to-b from-white/40 to-transparent"></div>
+      </div>
+    </section>
+
+    <!-- Second Slide: Info Area with completely transparent background (No Purple Mask) -->
+    <section id="cyber-info-section" class="w-full relative z-10 py-16 md:py-24 bg-transparent">
+      <div class="max-w-4xl mx-auto px-4">
+        
+        <!-- Interactive 2-Tab Segment with Frosted Glass -->
+        <div class="w-full max-w-3xl mx-auto px-4">
+          
+          <!-- Distinct Tab Selectors -->
+          <div id="tabs-trigger-group" class="flex justify-center mb-8 gap-4">
+            <button id="btn-tab-profile" class="relative px-5 py-3 rounded-xl font-space uppercase tracking-wider text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer text-[#00FF41] border border-[#00FF41]/30 bg-[#00FF41]/10" style="min-width: 140px; min-height: 44px;">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Developer Bio
+              </span>
+            </button>
+
+            <button id="btn-tab-pages" class="relative px-5 py-3 rounded-xl font-space uppercase tracking-wider text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer text-gray-400 border border-transparent" style="min-width: 140px; min-height: 44px;">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                </svg>
+                Hosting Plan
+              </span>
+            </button>
+          </div>
+
+          <!-- Frosted Glass Details Panel -->
+          <div id="active-tab-detail-box" class="frosted-glass rounded-2xl p-6 sm:p-8 min-h-[180px]">
+            
+            <!-- View 1: About Me -->
+            <div id="view-profile" class="space-y-4 transition-all duration-300 opacity-100">
+              <h3 class="text-xl sm:text-2xl font-space font-medium text-white tracking-tight flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00FF41]"></span>
+                About Jojonon
+              </h3>
+              <div class="text-gray-300 leading-relaxed space-y-4 text-xs sm:text-sm md:text-base font-normal">
+                <p>
+                  I am a <strong class="text-[#00FF41] font-semibold">mid-range programmer and app developer</strong> currently focusing on custom program flows and lightweight scripts.
+                </p>
+                <p>
+                  I am highly used to <strong class="text-white font-semibold">Python</strong> for crafting automation, parsing components, and running back-end processing sequences.
+                </p>
+                <p>
+                  Currently, I am expanding my design boundaries by building this ultra-modern, responsive static web footprint on my own from scratch.
+                </p>
+              </div>
+            </div>
+
+            <!-- View 2: GitHub Pages Infrastructure -->
+            <div id="view-pages" class="space-y-4 transition-all duration-300 opacity-0 hidden">
+              <h3 class="text-xl sm:text-2xl font-space font-medium text-white tracking-tight flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FF2E63]"></span>
+                GitHub Pages Ready
+              </h3>
+              <div class="text-gray-300 leading-relaxed space-y-4 text-xs sm:text-sm md:text-base font-normal">
+                <p>
+                  Since I am planning to host this static footprint onto my <strong class="text-[#FF2E63] font-semibold">GitHub Pages</strong> stream, I designed it with zero unnecessary server logic.
+                </p>
+                <p>
+                  The site runs fully client-side and is offloaded to exactly <strong class="text-white font-semibold">3 or 4 files</strong> (HTML, CSS, JS) that work together seamlessly behind the screen.
+                </p>
+                <p>
+                  This guarantees extreme performance speed, neat desktop-first and phone-first compatibility, and zero layout errors.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Footer: Live Status & Clean Copyright notice -->
+    <footer id="cyber-footer" class="w-full relative z-10 border-t border-white/5 py-12 bg-[#0F0F11]/80 text-gray-500 text-xs mt-12">
+      <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-2.5">
+          <div class="w-1.5 h-1.5 rounded-full bg-[#00FF41]"></div>
+          <span class="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-medium">
+            System Status: <span class="text-[#00FF41] font-bold">Online</span>
+          </span>
+        </div>
+
+        <div class="text-[11px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold text-center sm:text-right">
+          © JOJONON 2026. ALL RIGHTS RESERVED.
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- Client-side Scripts Embedded Directly for Perfect Single-File Portability -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 1. DYNAMIC SYSTEM UTC TIME AND DATE UPDATES
+        const timeElement = document.getElementById('current-time');
+        const dateElement = document.getElementById('current-date');
+
+        function updateSystemClock() {
+          const now = new Date();
+
+          // Time Format: HH:MM:SS UTC (ex: 23:42:08 UTC)
+          const hours = String(now.getUTCHours()).padStart(2, '0');
+          const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+          const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+          
+          if (timeElement) {
+            timeElement.textContent = hours + ':' + minutes + ':' + seconds + ' UTC';
+          }
+
+          // Date Format: MONTH DD, YYYY UTC (ex: OCTOBER 24, 2026)
+          const day = now.getUTCDate();
+          const months = [
+            'JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
+            'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'
+          ];
+          const month = months[now.getUTCMonth()];
+          const year = now.getUTCFullYear();
+
+          if (dateElement) {
+            dateElement.textContent = month + ' ' + day + ', ' + year;
+          }
+        }
+
+        // Initial call and run every second
+        updateSystemClock();
+        setInterval(updateSystemClock, 1000);
+
+
+        // 2. VANILLA SMOOTH TAB SWITCHING LOGIC WITH TRANSITIONS
+        const btnTabProfile = document.getElementById('btn-tab-profile');
+        const btnTabPages = document.getElementById('btn-tab-pages');
+        const viewProfile = document.getElementById('view-profile');
+        const viewPages = document.getElementById('view-pages');
+
+        if (btnTabProfile && btnTabPages && viewProfile && viewPages) {
+          function switchTab(activeTab) {
+            if (activeTab === 'profile') {
+              // Update Buttons
+              btnTabProfile.classList.add('text-[#00FF41]', 'border-[#00FF41]/30', 'bg-[#00FF41]/10');
+              btnTabProfile.classList.remove('text-gray-400', 'border-transparent', 'bg-transparent');
+              
+              btnTabPages.classList.add('text-gray-400', 'border-transparent');
+              btnTabPages.classList.remove('text-[#FF2E63]', 'border-[#FF2E63]/30', 'bg-[#FF2E63]/10');
+
+              // Update Content Views with smooth fade and translation transition
+              viewPages.classList.add('hidden', 'opacity-0');
+              viewProfile.classList.remove('hidden');
+              setTimeout(() => {
+                viewProfile.classList.remove('opacity-0');
+              }, 30);
+            } else {
+              // Update Buttons
+              btnTabPages.classList.add('text-[#FF2E63]', 'border-[#FF2E63]/30', 'bg-[#FF2E63]/10');
+              btnTabPages.classList.remove('text-gray-400', 'border-transparent');
+
+              btnTabProfile.classList.add('text-gray-400', 'border-transparent');
+              btnTabProfile.classList.remove('text-[#00FF41]', 'border-[#00FF41]/30', 'bg-[#00FF41]/10');
+
+              // Update Content Views
+              viewProfile.classList.add('hidden', 'opacity-0');
+              viewPages.classList.remove('hidden');
+              setTimeout(() => {
+                viewPages.classList.remove('opacity-0');
+              }, 30);
+            }
+          }
+
+          btnTabProfile.addEventListener('click', () => switchTab('profile'));
+          btnTabPages.addEventListener('click', () => switchTab('pages'));
+        }
+
+
+        // 3. HIGH PERFORMANCE STATIC NEON DOT PARTICLES CANVAS
+        const canvas = document.getElementById('glow-particles-canvas');
+        if (canvas) {
+          const ctx = canvas.getContext('2d');
+          let particles = [];
+          let animationFrameId;
+          const maxParticles = 50;
+
+          // Fluid container resizing
+          function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+          }
+
+          function initParticles() {
+            particles = [];
+            for (let i = 0; i < maxParticles; i++) {
+              const radius = Math.random() * 2 + 1;
+              const color = Math.random() > 0.55 ? 'green' : 'rose';
+              particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                radius: radius,
+                color: color,
+                alpha: Math.random() * 0.4 + 0.3,
+                glow: Math.random() * 8 + 4
+              });
+            }
+          }
+
+          function draw() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+              const p = particles[i];
+
+              // Move particle
+              p.x += p.vx;
+              p.y += p.vy;
+
+              // Wrap boundaries
+              if (p.x < 0) p.x = canvas.width;
+              if (p.x > canvas.width) p.x = 0;
+              if (p.y < 0) p.y = canvas.height;
+              if (p.y > canvas.height) p.y = 0;
+
+              // Draw particle
+              ctx.save();
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+              
+              const glowColor = p.color === 'green' ? '0, 255, 65' : '255, 46, 99';
+              ctx.shadowBlur = p.glow;
+              ctx.shadowColor = 'rgba(' + glowColor + ', ' + p.alpha + ')';
+              ctx.fillStyle = 'rgba(' + glowColor + ', ' + p.alpha + ')';
+              ctx.fill();
+              ctx.restore();
+
+              // Connect nearby points very softly for high-tech neural vibe
+              for (let j = i + 1; j < particles.length; j++) {
+                const p2 = particles[j];
+                if (p.color === p2.color) {
+                  const dx = p.x - p2.x;
+                  const dy = p.y - p2.y;
+                  const dist = Math.sqrt(dx * dx + dy * dy);
+                  if (dist < 110) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    const lineAlpha = (1 - dist / 110) * 0.08;
+                    const lineGlow = p.color === 'green' ? 'rgba(0, 255, 65, ' + lineAlpha + ')' : 'rgba(255, 46, 99, ' + lineAlpha + ')';
+                    ctx.strokeStyle = lineGlow;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                  }
+                }
+              }
+            }
+
+            animationFrameId = requestAnimationFrame(draw);
+          }
+
+          window.addEventListener('resize', resizeCanvas);
+          resizeCanvas();
+          draw();
+        }
+
+        // 4. SMOOTH SCROLL ACCORDION TRIGGER
+        const scrollBtn = document.getElementById('scroll-action-button');
+        const infoSection = document.getElementById('cyber-info-section');
+        if (scrollBtn && infoSection) {
+          scrollBtn.addEventListener('click', () => {
+            infoSection.scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
