@@ -1,0 +1,6 @@
+{
+  "name": "JOJONON_CYBERNETICS",
+  "description": "Futuristic liquid glass portal for JOJONON_CYBERNETICS with neon ambiance, a custom construction status dashboard, and developer profile cards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
